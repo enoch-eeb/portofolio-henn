@@ -158,4 +158,70 @@ function changeTitle() {
 // Start the typing effect
 changeTitle();
 
- 
+document.addEventListener('DOMContentLoaded', function() {
+  // Add animation classes to elements
+  const projectsTitle = document.querySelector('.projects h2');
+  const projectItems = document.querySelectorAll('.project-item');
+  
+  projectsTitle.classList.add('animate-on-scroll');
+  projectItems.forEach(item => {
+      item.classList.add('animate-on-scroll');
+  });
+
+  // Initialize Intersection Observer
+  const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+          // Remove previous animation classes
+          entry.target.classList.remove('is-visible', 'is-hidden');
+          
+          // Force reflow to reset animation
+          void entry.target.offsetWidth;
+          
+          if (entry.isIntersecting) {
+              // Add visible animation when element enters viewport
+              entry.target.classList.add('is-visible');
+          } else {
+              // Add hidden animation when element leaves viewport
+              if (entry.boundingClientRect.top > 0) {
+                  // Only animate if scrolling up
+                  entry.target.classList.add('is-hidden');
+              }
+          }
+      });
+  }, options);
+
+  // Observe elements
+  document.querySelectorAll('.animate-on-scroll').forEach(element => {
+      observer.observe(element);
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+          if (entry.isIntersecting) {
+              // Tambahkan kelas animate saat element masuk viewport
+              entry.target.classList.add('animate');
+          } else {
+              // Hapus kelas animate saat element keluar viewport
+              entry.target.classList.remove('animate');
+          }
+      });
+  }, {
+      threshold: 0.1, // Trigger ketika 10% element terlihat
+      rootMargin: '-50px' // Memberikan margin agar timing lebih tepat
+  });
+
+  // Mengamati section resume
+  const resumeSection = document.querySelector('.resume');
+  if (resumeSection) {
+      observer.observe(resumeSection);
+  }
+});
+

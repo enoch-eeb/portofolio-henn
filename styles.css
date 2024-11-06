@@ -311,9 +311,12 @@ nav ul li a.active {
 }
 
 .profile-image-container {
+  width: 200px; /* Add fixed width */
+  height: 200px; /* Add fixed height */
   overflow: hidden;
   border-radius: 50%;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0; /* Prevent container from shrinking */
 }
 
 .profile-image {
@@ -321,6 +324,7 @@ nav ul li a.active {
   height: 100%;
   object-fit: cover;
   transition: transform 0.4s ease;
+  display: block; /* Remove any default spacing */
 }
 
 .profile-image:hover {

@@ -6,10 +6,33 @@ window.addEventListener('scroll', function() {
       header.classList.remove('scrolled');
   }
 });
+document.addEventListener('DOMContentLoaded', function() {
+  const menuToggle = document.querySelector('.toggle-menu');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  
+  menuToggle.addEventListener('click', function() {
+      mobileMenu.classList.toggle('show');
+  });
+
+  // Menutup menu saat mengklik di luar menu
+  document.addEventListener('click', function(event) {
+      if (!event.target.closest('.mobile-menu') && !event.target.closest('.toggle-menu')) {
+          mobileMenu.classList.remove('show');
+      }
+  });
+
+  // Menutup menu saat mengklik link
+  const menuLinks = document.querySelectorAll('.mobile-menu a');
+  menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+          mobileMenu.classList.remove('show');
+      });
+  });
+});
 
 // Toggle menu untuk mobile
 document.querySelector('.toggle-menu').addEventListener('click', function() {
-  document.querySelector('nav ul').classList.toggle('active');
+  document.querySelector('nav ul').classList.toggle('show');
 });
 
 // JavaScript for sticky header

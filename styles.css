@@ -118,6 +118,11 @@ header {
   transition: all 0.3s ease;
 }
 
+/* Untuk tombol hamburger selalu bisa diklik */
+.toggle-menu {
+  z-index: 1001;
+}
+
 /* Efek scroll */
 header.scrolled {
   padding: 8px 0;
@@ -142,6 +147,39 @@ nav ul {
   margin: 0;
   padding: 0;
   gap: 30px;
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+    position: fixed;
+    top: 50px;
+    left: 15px;
+    background-color: rgba(
+      74,
+      144,
+      226,
+      0.7
+    ); /* Warna biru muda dengan transparansi 0.7 */
+    backdrop-filter: blur(10px); /* Efek blur di background */
+    flex-direction: column;
+    padding: 12px;
+    text-align: left;
+    width: 160px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    z-index: 1000;
+  }
+
+  nav ul.show {
+    display: flex;
+    background-color: rgba(
+      74,
+      144,
+      226,
+      0.7
+    );
+  }
 }
 
 nav ul li {
@@ -186,6 +224,13 @@ nav ul li a.active {
   cursor: pointer;
   background: none;
   border: none;
+  text-decoration: none !important; /* Menghilangkan garis bawah */
+  -webkit-tap-highlight-color: transparent; /* Menghilangkan highlight saat di tap di mobile */
+  outline: none; /* Menghilangkan outline */
+}
+
+.toggle-menu:focus {
+  outline: none; /* Menghilangkan outline saat focus */
 }
 
 .theme-toggle {
@@ -206,8 +251,8 @@ nav ul li a.active {
 @media (max-width: 768px) {
   header {
     padding: 5px 0;
-    height: 50px; /* Ukuran diperkecil */
-    background-color: rgba(74, 144, 226, 0.7); /* Background lebih transparan */
+    height: 50px;
+    background-color: rgba(74, 144, 226, 0.7);
   }
 
   .container {
@@ -224,7 +269,8 @@ nav ul li a.active {
     display: block;
     order: 1;
     margin-right: auto;
-    font-size: 20px; /* Ukuran icon menu diperkecil */
+    font-size: 20px;
+    pointer-events: auto; /* Memastikan click events berfungsi */
   }
 
   .mobile-social-icons {
@@ -241,14 +287,14 @@ nav ul li a.active {
   }
 
   .theme-toggle {
-    font-size: 16px; /* Ukuran icon theme diperkecil */
+    font-size: 16px;
   }
 
   nav ul {
     display: none;
     position: fixed;
-    top: 60px; /* Sesuaikan dengan header yang baru */
-    left: 15px; /* Sesuaikan dengan margin header */
+    top: 60px;
+    left: 15px;
     background-color: rgba(74, 144, 226, 0.7);
     backdrop-filter: blur(10px);
     flex-direction: column;
@@ -256,7 +302,7 @@ nav ul li a.active {
     text-align: left;
     width: 160px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 15px; /* Memberikan lekukan pada menu dropdown */
+    border-radius: 15px;
   }
 
   nav ul.active {
@@ -268,7 +314,7 @@ nav ul li a.active {
   }
 
   nav ul li a {
-    font-size: 14px; /* Ukuran text menu diperkecil */
+    font-size: 14px;
     padding: 8px 12px;
   }
 
@@ -277,7 +323,7 @@ nav ul li a.active {
   }
 
   .mobile-social-icons .social-icon {
-    width: 26px; /* Ukuran icon social diperkecil */
+    width: 26px;
     height: 26px;
   }
 
@@ -286,7 +332,7 @@ nav ul li a.active {
   }
 
   main {
-    margin-top: 60px; /* Sesuaikan dengan header yang baru */
+    margin-top: 60px;
   }
 }
 
@@ -395,23 +441,25 @@ nav ul li a.active {
   .profile-fullpage {
     height: auto;
     padding-top: 60px;
-    padding-bottom: 20px;
+    padding-bottom: 40px; /* Increased padding bottom */
+    min-height: 100vh; /* Ensure minimum height */
   }
 
   .profile-content {
     flex-direction: column-reverse;
-    gap: 10px;
+    gap: 20px; /* Increased gap */
     text-align: center;
-    padding: 0 20px;
+    padding: 20px; /* Increased padding */
     opacity: 0;
     transform: translateY(15px);
     transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+    width: 100%; /* Ensure full width */
   }
 
   .profile-image-container {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
+    width: 150px; /* Increased size */
+    height: 150px; /* Increased size */
+    margin-bottom: 20px; /* Increased margin */
   }
 
   .profile-image {
@@ -422,44 +470,59 @@ nav ul li a.active {
   }
 
   .profile-name {
-    font-size: 24px;
-    margin-bottom: 5px;
+    font-size: 28px; /* Increased font size */
+    margin-bottom: 10px;
     white-space: normal;
   }
 
   .titles {
-    font-size: 14px;
-    margin-bottom: 10px;
+    font-size: 16px; /* Increased font size */
+    margin-bottom: 15px;
     white-space: nowrap;
-    justify-content: center; /* Added this to center titles on mobile */
+    justify-content: center;
+    flex-wrap: wrap; /* Allow wrapping if needed */
   }
 
   #dynamic-title {
-    margin-left: 3px;
-    font-size: 14px;
+    margin-left: 5px;
+    font-size: 16px; /* Increased font size */
+  }
+
+  .profile-text {
+    width: 100%; /* Ensure full width */
+    max-width: 500px; /* Maximum width for readability */
+    margin: 0 auto; /* Center the text container */
   }
 
   .profile-text p {
-    font-size: 14px;
-    margin-top: 5px;
+    font-size: 16px; /* Increased font size */
+    margin-top: 10px;
+    line-height: 1.5; /* Improved readability */
   }
 
   .tech-stack {
-    gap: 5px;
-    margin: 10px 0;
+    gap: 15px; /* Increased gap */
+    margin: 20px 0;
     flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .tech-icon {
+    padding: 10px; /* Increased padding */
+    min-width: 60px; /* Minimum width for icons */
   }
 
   .tech-icon i {
-    font-size: 1.2em;
+    font-size: 1.8em; /* Increased icon size */
+    margin-bottom: 8px;
   }
 
   .tech-icon span {
-    font-size: 0.7em;
+    font-size: 0.85em; /* Increased font size */
   }
 }
 
-/* Icon Colors */
+/* Icon Colors remain the same */
 .fa-python {
   color: #3776ab;
 }
@@ -1043,27 +1106,65 @@ nav ul li a.active {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+  body {
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    width: 100%;
+  }
+
+  .resume-section {
+    padding: 40px 20px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   .resume-description {
     max-width: 100%;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    padding: 0 15px; /* Add horizontal padding */
   }
 
   .resume-content {
     flex-direction: column;
     align-items: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto; /* Center the content */
+    padding: 0 15px; /* Add horizontal padding */
+  }
+
+  .education-item {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto 15px auto; /* Center horizontally */
+    padding: 15px;
+    box-sizing: border-box; /* Include padding in width calculation */
   }
 
   .education-content {
     flex-direction: row;
     align-items: center;
+    width: 100%;
+    max-width: 100%;
+    gap: 15px;
+    box-sizing: border-box;
   }
 
   .institution-logo {
-    width: 25px;
-    height: 25px;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0; /* Prevent logo from shrinking */
+  }
+
+  .education-details {
+    width: 100%;
+    overflow-wrap: break-word; /* Prevent text overflow */
+    word-wrap: break-word;
   }
 }
-
-
 
 /* Footer */
 footer {
@@ -1139,8 +1240,6 @@ footer {
   }
 }
 
-
-
 /* Dark mode styles */
 body.dark-mode {
   background-color: #1a1a1a;
@@ -1181,6 +1280,15 @@ body.dark-mode footer {
   background-color: #333;
 }
 
+/* Tambahkan style untuk nav ul dalam dark mode */
+@media (max-width: 768px) {
+  body.dark-mode nav ul,
+  body.dark-mode nav ul.show {
+    background-color: rgba(51, 51, 51, 0.85); /* Sesuai dengan warna header dark mode */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+}
+
 /* Theme toggle button */
 .theme-toggle {
   background: none;
@@ -1199,7 +1307,8 @@ body {
 header,
 .profile-fullpage,
 .project-item,
-footer {
+footer,
+nav ul {  /* Tambahkan nav ul ke dalam transition */
   transition: background-color 0.3s ease;
 }
 

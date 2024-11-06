@@ -257,12 +257,15 @@ nav ul li a.active {
 
   .container {
     padding: 0 12px;
+    max-width: 100%; /* Mencegah konten keluar dari layar */
+    overflow: hidden;
   }
 
   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 100%; /* Mencegah navbar melampaui lebar layar */
   }
 
   .toggle-menu {
@@ -277,6 +280,8 @@ nav ul li a.active {
     display: flex;
     align-items: center;
     order: 2;
+    max-width: calc(100% - 40px); /* Mengurangi lebar agar tetap muat di layar */
+    overflow: hidden;
   }
 
   .nav-controls {

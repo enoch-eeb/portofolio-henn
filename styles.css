@@ -118,6 +118,10 @@ header {
   transition: all 0.3s ease;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Untuk tombol hamburger selalu bisa diklik */
 .toggle-menu {
   z-index: 1001;
@@ -150,29 +154,24 @@ nav ul {
 }
 
 @media (max-width: 768px) {
-  nav ul {
-    display: none;
-    position: fixed;
-    top: 50px;
-    left: 15px;
-    background-color: rgba(
-      74,
-      144,
-      226,
-      0.7
-    ); /* Warna biru muda dengan transparansi 0.7 */
-    backdrop-filter: blur(10px); /* Efek blur di background */
-    flex-direction: column;
-    padding: 12px;
-    text-align: left;
-    width: 160px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-    z-index: 1000;
+  .nav-menu {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 15px;
+      background-color: rgba(74, 144, 226, 0.7);
+      backdrop-filter: blur(10px);
+      flex-direction: column;
+      padding: 12px;
+      text-align: left;
+      width: 160px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      z-index: 1000;
   }
 
-  nav ul.show {
-    display: flex;
+  .nav-menu.show {
+      display: flex;
     background-color: rgba(
       74,
       144,
@@ -340,6 +339,8 @@ nav ul li a.active {
     margin-top: 60px;
   }
 }
+
+
 
 /* Profile Full Page */
 .profile-fullpage {
@@ -712,25 +713,41 @@ nav ul li a.active {
   }
 }
 
-.prev,
+.slideshow-container .prev,
+.slideshow-container .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  user-select: none;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: none;
+  z-index: 2;
+}
+
+.prev {
+  left: 0;
+  border-radius: 0 3px 3px 0;
+}
+
 .next {
-  margin: 0;
-  padding: 16px 12px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.6);
-  outline: none;
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .prev:focus,
 .next:focus {
   outline: none;
-}
-
-.slideshow-container {
-  overflow: visible;
 }
 
 .tech-stack {
@@ -851,6 +868,7 @@ nav ul li a.active {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 
 /* Resume Section */
 .resume {

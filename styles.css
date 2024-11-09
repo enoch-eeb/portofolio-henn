@@ -579,7 +579,7 @@ nav ul li a.active {
   padding: 20px;
   text-align: center;
   transition: transform 0.3s ease;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: #f9f9f9;
 }
 
@@ -867,6 +867,162 @@ nav ul li a.active {
   transform: translateY(-10px) !important;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+ /* Modal styling */
+ .modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 55%; /* Optional maximum width */
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Shadow lebih halus */
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Prevent body scrolling when modal is open */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Media query khusus untuk mobile devices */
+@media (max-width: 768px) {
+  /* Modal background */
+  .modal {
+    padding: 0 10px; /* Memberikan padding agar modal tidak terlalu menempel di sisi layar */
+  }
+
+  .modal-content {
+    width: 100%;
+    max-width: 95%; /* Lebih lebar untuk mobile */
+    padding: 15px; /* Mengurangi padding untuk mobile */
+    border-radius: 8px; /* Memberikan sudut bulat agar lebih modern */
+    top: 10%; /* Menurunkan modal sedikit dari atas */
+    transform: none; /* Menghilangkan efek translate di mobile */
+    overflow-y: auto;
+  }
+
+  .modal h2 {
+    margin-bottom: 5px; /* Memberikan jarak antara judul dan konten berikutnya */
+    font-size: 1.5em; /* Sesuaikan ukuran font judul di mobile */
+  }
+
+  .close {
+    font-size: 24px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+  }
+
+  .slideshow-container {
+    margin-top: 10px; /* Memberikan jarak antara tombol close dan slideshow */
+  }
+}
+
+.tech-stack {
+  gap: 8px; /* Mengurangi jarak antar ikon */
+  margin: 3px 0; /* Mengurangi margin atas dan bawah */
+}
+
+.tech-icon {
+  padding: 6px; /* Mengurangi padding untuk ikon */
+}
+
+.tech-icon i {
+  font-size: 1.2em; /* Ukuran ikon lebih kecil */
+  margin-bottom: 2px; /* Mengurangi jarak antara ikon dan teks */
+}
+
+.tech-icon span {
+  font-size: 0.6em; /* Ukuran teks lebih kecil */
+}
+
+/* Dark mode untuk modal */
+body.dark-mode .modal {
+  background-color: rgba(0, 0, 0, 0.8); /* Background lebih gelap */
+}
+
+body.dark-mode .modal-content {
+  background-color: #222; /* Background konten modal di dark mode */
+  color: #fff; /* Teks menjadi putih */
+  border: 1px solid #444; /* Border dengan warna lebih gelap */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); /* Shadow lebih redup */
+}
+
+/* Dark mode untuk tombol close */
+body.dark-mode .close {
+  color: #aaa; /* Warna lebih terang dari background */
+}
+
+body.dark-mode .close:hover,
+body.dark-mode .close:focus {
+  color: #fff; /* Lebih cerah saat di-hover */
+}
+
+/* Dark mode untuk slideshow */
+body.dark-mode .slideshow-container {
+  background-color: #1a1a1a; /* Background slideshow lebih gelap */
+}
+
+body.dark-mode .mySlides img {
+  border-color: #444; /* Border lebih gelap untuk gambar */
+}
+
+/* Dark mode untuk tombol navigasi slideshow */
+body.dark-mode .prev,
+body.dark-mode .next {
+  background-color: rgba(255, 255, 255, 0.2); /* Tombol lebih terang */
+}
+
+body.dark-mode .prev:hover,
+body.dark-mode .next:hover {
+  background-color: rgba(255, 255, 255, 0.4); /* Warna lebih terang saat di-hover */
+}
+
+/* Dark mode untuk nomor slide dan dot navigasi */
+body.dark-mode .numbertext {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .dot {
+  background-color: #555;
+}
+
+body.dark-mode .dot.active,
+body.dark-mode .dot:hover {
+  background-color: #fff;
 }
 
 
